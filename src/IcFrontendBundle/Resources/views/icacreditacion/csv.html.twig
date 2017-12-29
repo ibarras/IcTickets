@@ -1,0 +1,7 @@
+{% for icAcreditacion in icAcreditacions %}
+     {% if loop.first %}
+         NOMBRE DE LA ACREDITACION, PUESTO, CODIGO QR, FOLIO, FOTOGRAFIA, TIPO DE ACREDITACION
+     {% endif %}
+    {{ icAcreditacion.idAcreditacion.nombreEnAcreditacion ~","~ icAcreditacion.idAcreditacion.puesto ~","~ icAcreditacion.codigo ~","~
+    icAcreditacion.idAcreditacion.id ~","~  icAcreditacion.idAcreditacion.fotografia ~","~ icAcreditacion.idAcreditacionTipo.nombre }}
+{% endfor %}

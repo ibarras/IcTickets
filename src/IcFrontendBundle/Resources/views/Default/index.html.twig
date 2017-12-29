@@ -1,0 +1,30 @@
+{% extends 'base_frontend.html.twig' %}
+{% block content %}
+    <div class="row">
+        <div id="col-sm-12"> <!-- contenido de la pagina -->
+            <div class="col-sm-3 col-sm-offset-3">
+                <div class="panel-body">
+                    <a href="#"><img class="img-responsive" src="/bundles/icfrontend/images/gestionmarca.png">
+                        <label>Gesti&oacute;n de Marca</label>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="panel-body">
+                    <a href="{{ path('frontend_control') }}"><img class="img-responsive" src="/bundles/icfrontend/images/gestionrecursos.png">
+                    <label>Gesti&oacute;n de Recursos</label>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="panel-body">
+                    <a href="#"><img class="img-responsive" src="/bundles/icfrontend/images/gestiondeportiva.png">
+                        <label>Gesti&oacute;n Deportiva</label>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

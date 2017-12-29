@@ -1,0 +1,105 @@
+    <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1.0, user-scalable=no">
+
+    <title>{% block title %}Club Tijuana Xoloitzcuintles de Caliente{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('l-t.png') }}">
+
+
+
+    <link rel="stylesheet" href="/bundles/icfrontend/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/bundles/icfrontend/css/font-awesome/css/font-awesome.min.css">
+
+    {#<link rel="stylesheet" href="/bundles/icfrontend/css/Style.css">#}
+
+    <!--Estilo de las solicitudes -->
+    <link rel="stylesheet" href="/bundles/icfrontend/css/solicitudStyle.css">
+
+    {#<link rel="stylesheet" href="/bundles/icfrontend/css/status.css">#}
+
+    </head>
+	
+	
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+    <div class="background" style="background: image('/bundles/icfrontend/images/Reticula.png')">
+
+<style>
+
+    body{
+        background-image: url("/bundles/icfrontend/images/Reticula.png");
+        background-repeat: round;
+        background-position: center;
+
+    }
+</style>
+<div class="col-xs-12" align="center">
+    <img alt="Xoloitzcuintles de Caliente" class="img-responsive"src="/bundles/icfrontend/images/l-t.png">
+</div>
+
+<div class="container" >
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading" align="center">
+                    <strong> ¡Ingresa al sistema más perrón del mundo!</strong>
+                </div>
+                <div class="panel-body">
+                    <form action="{{ path("fos_user_security_check") }}" method="post">
+                        {% if csrf_token %}
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                        {% endif %}
+
+                        {#<fieldset>#}
+                        <div class="row">
+                            <div class="col-sm-12 col-md-10  col-md-offset-1" id="panel-mayor">
+                                <div class="form-group">
+                                    <div>
+                                        <label for="username">{{ 'security.login.username'|trans }}</label>
+                                    </div>
+                                    <div class="input-group">
+												<span class="input-group-addon">
+													<i class="fa fa-user" aria-hidden="true"></i>
+												</span>
+                                        <input autofocus type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div>
+                                        <label for="password">{{ 'security.login.password'|trans }}</label>
+                                    </div>
+                                    <div class="input-group">
+												<span class="input-group-addon">
+													<i class="fa fa-lock" aria-hidden="true"></i>
+												</span>
+                                        <input type="password" id="password" name="_password" required="required" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                                    <label class="remember_me" for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Iniciar Sesi&oacute;n">
+                                </div>
+                            </div>
+                        </div>
+                        {#</fieldset>#}
+                    </form>
+                </div>
+                {#<div class="panel-footer " align="center">
+                    ¿Olvidaste tu contraseña? <a href="#"> Da clic aquí </a>
+                </div>#}
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
