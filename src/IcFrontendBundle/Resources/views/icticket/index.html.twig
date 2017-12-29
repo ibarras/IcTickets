@@ -1,0 +1,64 @@
+{% extends 'base_frontend.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 ">
+                <div class="panel-heading custom-header-panel">
+                    <div class="col-sm-3" align="left">
+                        <img class="img-responsive" width="40%" height="40%" src="/bundles/icfrontend/images/l-t.png">
+                    </div>
+                    <div align="left">
+                        <h3>Servicios Profesionales S.A de C.V</h3>
+                        <h2 class="panel-title roboto">Listado de Solicitudes para Soporte</h2>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th>FECHA CREADO</th>
+                            <th>DESCRIPCIÓN</th>
+                            <th>SOLICITANTE</th>
+                            <th>ESTATUS</th>
+                            <th>FECHA FINALIZADO</th>
+                            <th>ATENDIDO POR </th>
+                            <th>OPCIONES</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for ticket in tickets %}
+                            <tr>
+                                <td>{{ ticket.fechaCreado | date("d/m/Y") }}</td>
+                                <td>{{ ticket.descripcionProblema }}</td>
+                                <td>{{ ticket.idUsuarioSolicitante.nombre }}</td>
+                                {% if ticket.idEstatus.id == 1 %}
+                                    <td><span class="label label-default">{{ ticket.idEstatus.nombre }}</span></td>
+                                {% elseif ticket.idEstatus.getId() == 2 %}
+                                    <td><span class="label label-primary">{{ ticket.idEstatus.getNombre() }}</span></td>
+                                {% else %}
+                                    <td><span class="label label-warning">{{ ticket.idEstatus.getNombre() }}</span></td>
+                                {% endif %}
+                                <td>{{ ticket.fechaFinalizado }}</td>
+                                <td>Misael</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-primary btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            ACCIONES <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{ path('ticket_editar', { 'id': ticket.id }) }}"><i class="fa fa-edit"></i> Editar</a></li>
+                                            <li><a href="#"><i class="fa fa-user-plus"></i> Asignar</a></li>
+                                            <li><a href="#"><i class="fa fa-check-square-o"></i> Finalizar</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
