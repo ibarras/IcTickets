@@ -20,6 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Acl\Exception\Exception;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\Filesystem\Filesystem;
 
 
 /**
@@ -46,6 +47,22 @@ class IcTicketController extends Controller
             IcConfig::LIMITE_PAGINADO_GENERAL/*limit per page*/
         );
 
+        $data = array();
+
+        foreach($ictickets as $t )
+        {
+            $data = array(
+                'creado'            => date_format($t->getFechaCreado(), 'd-M-Y'),
+                'descripcion'       => $t->getDescripcionProblema(),
+                'imagen'            => $t->getImagen(),
+                'estatus'           => $t->getIdEstatus()->getNombre(),
+                'solicitante'       => $t->getIdUSuarioSolicitante()->getNombre());
+        }
+        $helpers = $this->get('app.helpers');
+        $json =  $helpers->json($data);
+
+        $fs = new Filesystem();
+        $fs->dumpFile($this->get('kernel')->getRootDir() . '/../web/uploads/json/tickets_actuales.json', $json );
 
 
         return $this->render('IcFrontendBundle:icticket:index.html.twig', array(
@@ -68,8 +85,6 @@ class IcTicketController extends Controller
 
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
-//                para crear la solicitud como usuario logeado
-//                $icFosPerfil = $this->getDoctrine()->getRepository('IcFrontendBundle:IcFosPerfil')->findOneByIdFos($this->getUser());
                 $estatus = $this->getDoctrine()->getRepository('IcFrontendBundle:IcEstatusTicket')->find(IcConfig::ESTATUS_NO_ASIGNADO);
 
                 $ticket->setFechaCreado(new \DateTime('now'));

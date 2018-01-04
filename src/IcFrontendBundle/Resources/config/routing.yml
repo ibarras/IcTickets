@@ -1,3 +1,23 @@
 home:
     path:  /
-    defaults:  {  _controller: FrontendBundle:IcNoticias:index }
+    defaults:  {  _controller: IcFrontendBundle:IcTicket:index }
+
+#Soporte(Tickets)
+#Julio Flores
+#19/12/2017
+
+frontend_nuevo_ticket:
+    path: /nueva-solicitud
+    defaults: { _controller: IcFrontendBundle:IcTicket:new}
+
+ticket_editar:
+     path: /editar-solicitud/{id}
+     defaults: { _controller:IcFrontendBundle:IcTicket:update }
+     requirements:
+         id: \d+
+
+ticket_detalle:
+     path: /detalle-solicitud/{id}
+     defaults: { _controller:IcFrontendBundle:IcTicket:show }
+     requirements:
+         id: \d+

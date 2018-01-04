@@ -18,6 +18,7 @@ class IcAcreditacionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $estatus = $options['estatus'];
         $builder
             ->add('solicitante', TextType::class, array('required'    => true, 'label' => 'Solicitante', 'attr' => array('class' => 'form-control')))
 
@@ -36,7 +37,6 @@ class IcAcreditacionType extends AbstractType
             ->add('idAcreditacionTipo', EntityType::class, array('class' => 'IcFrontendBundle\Entity\IcAcreditacionTipo', 'label' => 'Topo de Acreditacion '))
 
             ->add('idFosPerfil', EntityType::class,  array('class' => 'IcFrontendBundle\Entity\IcFosPerfil', 'label' => 'Autorizado por: ' ));
-
 
 //            ->add('idFosPerfil', 'entity_id' , array('class' => 'IcFrontendBundle\Entity\IcFosPerfil' ))
 //

@@ -1,9 +1,13 @@
 {% extends 'base_frontend.html.twig' %}
 
+
+
 {% block content %}
-    <div class="container">
+
+
         <div class="row">
             <div class="col-sm-12 ">
+
                 <div class="panel-heading custom-header-panel">
                     <div class="col-sm-3" align="left">
                         <img class="img-responsive" width="40%" height="40%" src="/bundles/icfrontend/images/l-t.png">
@@ -16,6 +20,7 @@
                 <div class="panel-body">
                     <table class="table table-hover table-bordered">
                         <thead>
+
                         <tr>
                             <th>FECHA CREADO</th>
                             <th>DESCRIPCIÓN</th>
@@ -60,5 +65,32 @@
                 </div>
             </div>
         </div>
+
+
+    <div class="row" id="app">
+        <div class="col-md-12">
+            <table class="table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Posicion</th>
+                    <th>Numero</th>
+                    <th>Estatura</th>
+                    <th>Peso</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="player in players">
+                    <td>{! player.id !}</td>
+                    {#<td><img class="img-responsive" :src="player.foto_app" width="120" height="100" /></td>#}
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+
+
 {% endblock %}

@@ -1,5 +1,5 @@
 <?php
-namespace AppBundle\Services;
+namespace IcFrontendBundle\Services;
 
 class Helpers {
 	public $jwt_auth;
@@ -42,9 +42,6 @@ class Helpers {
 		
 		return $response;
 	}
-	
-	public function hola(){
-		return "Hola desde el servicio";
-	}
+
 	
 }
