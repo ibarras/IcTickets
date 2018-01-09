@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * IcTicket
  *
  * @ORM\Table(name="ic_ticket", indexes={@ORM\Index(name="IDX_BB5211579366C0A", columns={"id_usuario_solicitante"}), @ORM\Index(name="IDX_BB52115750BDD1F3", columns={"id_estatus"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="IcFrontendBundle\Repository\IcTicketRepository")
  */
 class IcTicket extends IcUpload
 {
@@ -55,6 +55,20 @@ class IcTicket extends IcUpload
     private $fechaFinalizado;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="titulo", type="text", nullable=true)
+     */
+    private $titulo;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_trabajando", type="date", nullable=true)
+     */
+    private $fechaTrabajando;
+
+    /**
      * @var \IcFosPerfil
      *
      * @ORM\ManyToOne(targetEntity="IcFosPerfil")
@@ -74,6 +88,17 @@ class IcTicket extends IcUpload
      */
     private $idEstatus;
 
+    private $estatus;
+
+    public function getEstatus(){
+        return $this->estatus;
+    }
+
+    public function setEstatus($estatus){
+        $this->estatus = $estatus;
+
+        return $this;
+    }
 
 
     /**
@@ -198,6 +223,54 @@ class IcTicket extends IcUpload
     public function getFechaFinalizado()
     {
         return $this->fechaFinalizado;
+    }
+
+    /**
+     * Set titulo
+     *
+     * @param string $titulo
+     *
+     * @return IcTicket
+     */
+    public function setTitulo($titulo)
+    {
+        $this->titulo = $titulo;
+
+        return $this;
+    }
+
+    /**
+     * Get titulo
+     *
+     * @return string
+     */
+    public function getTitulo()
+    {
+        return $this->titulo;
+    }
+
+    /**
+     * Set fechaTrabajando
+     *
+     * @param \DateTime $fechaTrabajando
+     *
+     * @return IcTicket
+     */
+    public function setFechaTrabajando($fechaTrabajando)
+    {
+        $this->fechaTrabajando = $fechaTrabajando;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaTrabajando
+     *
+     * @return \DateTime
+     */
+    public function getFechaTrabajando()
+    {
+        return $this->fechaTrabajando;
     }
 
     /**

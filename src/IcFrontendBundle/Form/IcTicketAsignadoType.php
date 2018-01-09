@@ -14,7 +14,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class IcTicketType extends AbstractType
+class IcTicketAsignadoType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -23,13 +23,9 @@ class IcTicketType extends AbstractType
     {
         $builder
 
-            ->add('idUsuarioSolicitante', EntityType::class, array('class'=>'IcFrontendBundle\Entity\IcFosPerfil', 'label' => 'Solicitante', 'choice_label'=>'nombre', 'attr' => array('class' => 'form-control')))
+            ->add('idTicket', EntityType::class, array('class'=>'IcFrontendBundle\Entity\IcTicket', 'label'=>false, 'choice_label'=>'titulo', 'attr' => array('class' => 'hidden')))
 
-            ->add('titulo', TextType::class, array('label' => 'Titulo del problema', 'attr' => array('class' => 'form-control')))
-
-            ->add('descripcionProblema', TextareaType::class, array('label' => 'Descripción del problema', 'attr' => array('class' => 'form-control', 'rows'=>'10')))
-
-            ->add('icImagen', FileType::class, array('required' => false, 'label' => 'Imagen del problema'));
+            ->add('idUsuarioAsignado', EntityType::class, array('class'=>'IcFrontendBundle\Entity\IcFosPerfil', 'label'=>'Asignar a: ', 'choice_label'=>'nombre', 'attr'=> array('class'=> 'form-control')));
 
 
     }
@@ -40,7 +36,7 @@ class IcTicketType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'IcFrontendBundle\Entity\IcTicket'
+            'data_class' => 'IcFrontendBundle\Entity\IcTicketAsignado'
         ));
     }
 
@@ -49,7 +45,7 @@ class IcTicketType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'icfrontendbundle_icticket';
+        return 'icfrontendbundle_icticketasignado';
     }
 
 

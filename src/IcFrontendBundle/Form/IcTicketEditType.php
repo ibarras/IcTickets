@@ -23,9 +23,11 @@ class IcTicketEditType extends AbstractType
     {
         $builder
 
-            ->add('idUsuarioSolicitante', EntityType::class, array('class'=>'IcFrontendBundle\Entity\IcFosPerfil', 'label' => 'Solicitante', 'attr' => array('class' => 'form-control')))
+            ->add('idUsuarioSolicitante', EntityType::class, array('class'=>'IcFrontendBundle\Entity\IcFosPerfil', 'label' => 'Solicitante', 'choice_label'=>'nombre', 'attr' => array('class' => 'form-control')))
 
-            ->add('descripcionProblema', TextareaType::class, array('label' => 'Descripción del problema', 'attr' => array('class' => 'form-control', 'rows'=>'10')))
+            ->add('titulo', TextType::class, array('label' => 'Problema', 'attr' => array('class' => 'form-control', 'readonly'=>true)))
+
+            ->add('descripcionProblema', TextareaType::class, array('label' => 'Descripción del problema', 'attr' => array('class' => 'form-control', 'rows'=>'10','readonly'=>true)))
 
             ->add('idEstatus', EntityType::class, array('class'=>'IcFrontendBundle\Entity\IcEstatusTicket','label' => 'Estatus','choice_label' => 'nombre', 'attr' => array('class' => 'form-control')))
 

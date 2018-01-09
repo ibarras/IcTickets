@@ -3,6 +3,7 @@
 namespace IcFrontendBundle\Services;
 
 use Firebase\JWT\JWT;
+use IcFrontendBundle\IcHelpers\IcConfig;
 
 class JwtAuth
 {
@@ -12,14 +13,15 @@ class JwtAuth
     public function __construct($manager)
     {
         $this->manager = $manager;
-        $this->key = "clave-secreta";
+        $this->key = IcConfig::LLAVE;
+
     }
 
     public function signup($email, $password, $getHash = NULL)
     {
         $key = $this->key;
 
-        $user = $this->manager->getRepository('BackendBundle:User')->findOneBy(
+        $user = $this->manager->getRepository('IcFrontendBundle:FosUser')->findOneBy(
             array(
                 "email" => $email,
                 "password" => $password
@@ -35,13 +37,11 @@ class JwtAuth
             $token = array(
                 "sub" => $user->getId(),
                 "email" => $user->getEmail(),
-                "name" => $user->getName(),
-                "surname" => $user->getSurname(),
-                "password" => $user->getPassword(),
-                "image" => $user->getImage(),
+                "name" => $user->getUsername(),
                 "iat" => time(),
                 "exp" => time() + (7 * 24 * 60 * 60)
             );
+
 
             $jwt = JWT::encode($token, $key, 'HS256');
             $decoded = JWT::decode($jwt, $key, array('HS256'));

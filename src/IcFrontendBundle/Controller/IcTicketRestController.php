@@ -13,12 +13,14 @@
 
 namespace IcFrontendBundle\Controller;
 
+use IcFrontendBundle\Entity\FosUser;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use IcFrontendBundle\IcHelpers\IcUpload;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * IcTicket Controller.
@@ -34,6 +36,43 @@ class IcTicketRestController extends Controller
      */
     public function indexAction(Request $request)
     {
+
+        $username =  'martin'; // $request->getUser();
+        $password = 'martin'; //$request->getPassword();
+
+
+        $user_manager = $this->get('fos_user.user_manager');
+        $factory = $this->get('security.encoder_factory');
+
+        $user = $user_manager->findUserByUsername($username);
+        $encoder = $factory->getEncoder($user);
+        $salt = $user->getSalt();
+
+        ld($password, $user->getPassword());
+
+        if($encoder->isPasswordValid($user->getPassword(), $password, $salt)) {
+            $response = new Response(
+                'Welcome '. $user->getUsername(),
+                Response::HTTP_OK,
+                array('Content-type' => 'application/json')
+            );
+        } else {
+            $response = new Response(
+                'Username or Password not valid.',
+                Response::HTTP_UNAUTHORIZED,
+                array('Content-type' => 'application/json')
+            );
+        }
+
+ld($response);die;
+        /// fin
+
+
+        //return $this->setBaseHeaders($response);
+
+
+
+
         $em = $this->getDoctrine()->getManager();
         $ictickets = $em->getRepository('IcFrontendBundle:IcTicket')->findAll();
 
