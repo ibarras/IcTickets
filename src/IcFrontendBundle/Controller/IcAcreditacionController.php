@@ -16,6 +16,7 @@ use Knp\Bundle\SnappyBundle\Snappy\Response\JpegResponse;
 use Knp\Bundle\SnappyBundle\Snappy\Response\SnappyResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 /**
  * Icacreditacion controller.
@@ -70,11 +71,36 @@ class IcAcreditacionController extends Controller
 
         if($request->get('exportar')){
 
-            $response = $this->render('IcFrontendBundle:icacreditacion:csv.html.twig', array('icAcreditacions' => $acreditaciones) );
+            //$response = $this->render('IcFrontendBundle:icacreditacion:csv.html.twig', array('icAcreditacions' => $acreditaciones ));
+/*
+            $response = new Response('Content', 200, array('content-type' => 'applicationt/csv'));
+            $response->setCharset('UTF-8');
+            $response->setContent($this->render('IcFrontendBundle:icacreditacion:csv.html.twig', array('icAcreditacions' => $acreditaciones )));
+            $response->prepare($request);
+*/
 
             $filename = "export_".date("Y_m_d_His").".csv";
-            $response->headers->set('Content-Type', 'text/csv');
-            $response->headers->set('Content-Disposition', 'attachment; filename='.$filename);
+
+            //$response->headers->set('Content-Type: text/csv;  charset=UTF-8');
+
+
+            //$response->setCharset('charset=UTF-8');
+           // $response->sendHeaders('Content-Type: applicationt/csv;', 'charset=UTF-8');
+            //$response->sendHeaders('Content-Disposition', 'attachment; filename='.$filename);
+
+            //$response->headers->set('Content-Type: texapplicationt/csv;', 'charset=UTF-8');
+            //$response->send(); // headers->set('Content-Disposition', 'attachment; filename='.$filename);
+
+
+            $response = new Response($this->render('IcFrontendBundle:icacreditacion:csv.html.twig', array('icAcreditacions' => $acreditaciones )));
+
+            $disposition = $response->headers->makeDisposition(
+                ResponseHeaderBag::DISPOSITION_ATTACHMENT, $filename
+
+            );
+
+            $response->headers->set('Content-Disposition', $disposition);
+
 
             return $response;
         }

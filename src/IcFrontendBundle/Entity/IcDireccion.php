@@ -98,4 +98,9 @@ class IcDireccion
     {
         return $this->idCentro;
     }
+
+    public function __toString()
+    {
+        return $this->getNombre();   // TODO: Implement __toString() method.
+    }
 }

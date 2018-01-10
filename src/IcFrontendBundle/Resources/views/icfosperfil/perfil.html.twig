@@ -1,0 +1,50 @@
+{% extends 'base_frontend.html.twig' %}
+
+{% block content %}
+<div class="col-md-10 col-md-offset-1">
+    <div class="panel panel-default panel-table">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-md-8">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Idperfil</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Telefono</th>
+                                <th>Iddireccion</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for icFosPerfil in icFosPerfils %}
+                            <tr>
+                                {#{{ path('icfosperfil_show', { 'idPerfil': icFosPerfil.idPerfil }) }}#}
+                                <td><a href="{{ path('icfosperfil_show', { 'idPerfil': icFosPerfil.idPerfil }) }}">{{ icFosPerfil.idFos.username }}</a></td>
+                                <td>{{ icFosPerfil.nombre }}</td>
+                                <td>{{ icFosPerfil.apellido }}</td>
+                                <td>{{ icFosPerfil.telefono }}</td>
+                                <td>{{ icFosPerfil.idDireccion }}</td>
+                                <td>
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('icfosperfil_show', { 'idPerfil': icFosPerfil.idPerfil }) }}">show</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('icfosperfil_edit', { 'idPerfil': icFosPerfil.idPerfil }) }}">edit</a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                            <a class="btn btn-success btn-block" href="{{ path('icfosperfil_new') }}">Crear</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

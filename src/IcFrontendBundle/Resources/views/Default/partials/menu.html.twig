@@ -11,8 +11,22 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Sistemas</a></li>
-                <li><a href="#about">Operaciones</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sistemas <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('frontend_nuevo_ticket') }}">Nueva Solicitud de Soporte </a>
+                        <li><a href="{{ path('icticket_index') }}">Solicitudes de Soporte</a>
+                        <li><a href="{{ path('icfosperfil_index') }}">FosPerfil de Usuarios</a>
+
+                    </ul>
+                </li>
+                acreditacion_index
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Operaciones <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('acreditacion_index') }}">Acreditaciones </a>
+                    </ul>
+                </li>
                 <li><a href="#contact">Comunicacion</a></li>
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     <li class="side-li">

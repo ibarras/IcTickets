@@ -2,11 +2,25 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <a href="javascript:history.back()">Regresar</a>
+    <div class="col-sm-12 ">
+
+        <div class="panel-heading custom-header-panel">
+            <div class="col-sm-3" align="left">
+                <img class="img-responsive" width="40%" height="40%" src="/bundles/icfrontend/images/l-t.png">
+            </div>
+            <div align="left">
+                <h3>Servicios Profesionales S.A de C.V</h3>
+                <h2 class="panel-title roboto">Listado de Acreditaciones</h2>
+            </div>
         </div>
+
+
+        <div class="panel-body">
+                <a href="javascript:history.back()">Regresar</a>
+
+            <table class="table table-hover table-bordered">
+
+
         <div class="col-md-12">
 
             <form class="form-inline" role="form" action="{{ path('acreditacion_exporta') }}" method="post">
@@ -66,8 +80,7 @@
                 </tbody>
             </table>
             {% endif %}
-        </div>
-    </div>
+
 </div>
 
 {% endblock %}

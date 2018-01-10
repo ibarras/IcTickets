@@ -1,70 +1,77 @@
 {% extends 'base_frontend.html.twig' %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 ">
-                <div class="panel-heading custom-header-panel">
-                    <div class="col-sm-3" align="left">
-                        <img class="img-responsive" width="40%" height="40%" src="/bundles/icfrontend/images/l-t.png">
-                    </div>
-                    <div align="left">
-                        <h3>Servicios Profesionales S.A de C.V</h3>
-                        <h2 class="panel-title roboto">Listado de Solicitudes para Soporte</h2>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <table class="table table-hover table-bordered">
-                        <thead>
-                        <tr>
-                            <th>FECHA CREADO</th>
-                            <th>PROBLEMA</th>
-                            <th>SOLICITANTE</th>
-                            <th>ESTATUS</th>
-                            <th>OPCIONES</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for ticket in tickets %}
-                            <tr>
-                                <td>{{ ticket.fechaCreado | date("d/m/Y") }}</td>
-                                <td>{{ ticket.titulo }}</td>
-                                <td>{{ ticket.idUsuarioSolicitante.getNombre() }}</td>
-                                {% if ticket.idEstatus.getId() == constant('IcFrontendBundle\\IcHelpers\\IcConfig::ESTATUS_NO_ASIGNADO') %}
-                                    <td><span class="label label-default">{{ ticket.idEstatus.getNombre() }}</span></td>
-                                {% elseif ticket.idEstatus.getId() == constant('IcFrontendBundle\\IcHelpers\\IcConfig::ESTATUS_TRABAJANDO') %}
-                                    <td><span class="label label-primary">{{ ticket.idEstatus.getNombre() }}</span></td>
-                                {% elseif ticket.idEstatus.getId() == constant('IcFrontendBundle\\IcHelpers\\IcConfig::ESTATUS_ESPERA') %}
-                                    <td><span class="label label-warning">{{ ticket.idEstatus.getNombre() }}</span></td>
-                                {% else %}
-                                    <td><span class="label label-success">{{ ticket.idEstatus.getNombre() }}</span></td>
-                                {% endif %}
-                                <td>
-                                    <div class="btn-group">
-                                        <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            ACCIONES <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="{{ path('ticket_detalle', { 'id': ticket.id }) }}"><i class="fa fa-info-circle"></i> Detalle</a></li>
-                                            <li><a href="{{ path('ticket_editar', { 'id': ticket.id, 'status': ticket.idEstatus.getId() }) }}"><i class="fa fa-edit"></i> Editar</a></li>
-                                            {% if ticket.idEstatus.getId() == constant('IcFrontendBundle\\IcHelpers\\IcConfig::ESTATUS_NO_ASIGNADO') %}
-                                            <li><a href="{{ path('icticketasignado_new', { 'id': ticket.id }) }}"><i class="fa fa-user-plus"></i> Asignar</a></li>
-                                            {% else %}
 
-                                            {% endif %}
-                                            <li><a class="btn-asignar" href="{{ path('comentario_nuevo', { 'id': ticket.id }) }}"><i class="fa fa-comment"></i> Agregar Comentario</a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-                <div class="navigation">
-                    {{ knp_pagination_render(tickets) }}
-                </div>
+    <div class="col-sm-12 ">
+
+        <div class="panel-heading custom-header-panel">
+            <div class="col-sm-3" align="left">
+                <img class="img-responsive" width="40%" height="40%" src="/bundles/icfrontend/images/l-t.png">
+            </div>
+            <div align="left">
+                <h3>Servicios Profesionales S.A de C.V</h3>
+                <h2 class="panel-title roboto">Listado de Solicitudes para Soporte</h2>
             </div>
         </div>
+
+        <div class="panel-body">
+            <table class="table table-hover table-bordered">
+                <thead>
+                <tr>
+                    <th>FECHA CREADO</th>
+                    <th>PROBLEMA</th>
+                    <th>SOLICITANTE</th>
+                    <th>ESTATUS</th>
+                    <th>OPCIONES</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for ticket in tickets %}
+                    <tr>
+                        <td>{{ ticket.fechaCreado | date("d/m/Y") }}</td>
+                        <td>{{ ticket.titulo }}</td>
+                        <td>{{ ticket.idUsuarioSolicitante.getNombre() }}</td>
+                        {% if ticket.idEstatus.getId() == constant('IcFrontendBundle\\IcHelpers\\IcConfig::ESTATUS_NO_ASIGNADO') %}
+                            <td><span class="label label-default">{{ ticket.idEstatus.getNombre() }}</span></td>
+                        {% elseif ticket.idEstatus.getId() == constant('IcFrontendBundle\\IcHelpers\\IcConfig::ESTATUS_TRABAJANDO') %}
+                            <td><span class="label label-primary">{{ ticket.idEstatus.getNombre() }}</span></td>
+                        {% elseif ticket.idEstatus.getId() == constant('IcFrontendBundle\\IcHelpers\\IcConfig::ESTATUS_ESPERA') %}
+                            <td><span class="label label-warning">{{ ticket.idEstatus.getNombre() }}</span></td>
+                        {% else %}
+                            <td><span class="label label-success">{{ ticket.idEstatus.getNombre() }}</span></td>
+                        {% endif %}
+                        <td>
+                            <div class="btn-group">
+                                <button class="btn btn-default btn-xs dropdown-toggle" type="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    ACCIONES <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('ticket_detalle', { 'id': ticket.id }) }}"><i
+                                                    class="fa fa-info-circle"></i> Detalle</a></li>
+                                    <li>
+                                        <a href="{{ path('ticket_editar', { 'id': ticket.id, 'status': ticket.idEstatus.getId() }) }}"><i
+                                                    class="fa fa-edit"></i> Editar</a></li>
+                                    {% if ticket.idEstatus.getId() == constant('IcFrontendBundle\\IcHelpers\\IcConfig::ESTATUS_NO_ASIGNADO') %}
+                                        <li><a href="{{ path('icticketasignado_new', { 'id': ticket.id }) }}"><i
+                                                        class="fa fa-user-plus"></i> Asignar</a></li>
+                                    {% else %}
+
+                                    {% endif %}
+                                    <li><a class="btn-asignar"
+                                           href="{{ path('comentario_nuevo', { 'id': ticket.id }) }}"><i
+                                                    class="fa fa-comment"></i> Agregar Comentario</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="navigation">
+            {{ knp_pagination_render(tickets) }}
+        </div>
     </div>
+
 {% endblock %}

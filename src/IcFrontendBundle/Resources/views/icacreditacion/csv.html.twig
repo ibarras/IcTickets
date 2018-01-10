@@ -1,7 +1,8 @@
 {% for icAcreditacion in icAcreditacions %}
      {% if loop.first %}
-         NOMBRE DE LA ACREDITACION, PUESTO, CODIGO QR, FOLIO, FOTOGRAFIA, TIPO DE ACREDITACION
+         TIPO DE ACREDITACION, NOMBRE DE LA ACREDITACION, PUESTO, PATROCINADOR, CODIGO QR, FOLIO, LINK, FOTOGRAFIA
      {% endif %}
-    {{ icAcreditacion.idAcreditacion.nombreEnAcreditacion ~","~ icAcreditacion.idAcreditacion.puesto ~","~ icAcreditacion.codigo ~","~
-    icAcreditacion.idAcreditacion.id ~","~  icAcreditacion.idAcreditacion.fotografia ~","~ icAcreditacion.idAcreditacionTipo.nombre }}
+        {{  icAcreditacion.idAcreditacionTipo.nombre |escape ~","~ icAcreditacion.idAcreditacion.nombreEnAcreditacion ~","~ icAcreditacion.idAcreditacion.puesto | raw   ~","~ icAcreditacion.idAcreditacion.patrocinador  | raw ~","~ icAcreditacion.codigo ~","~
+        icAcreditacion.idAcreditacion.id ~","~'http://sistemas.xolos.com.mx/uploads/imagen/acreditaciones/'~icAcreditacion.idAcreditacion.fotografia ~","~
+        icAcreditacion.idAcreditacion.fotografia }}
 {% endfor %}

@@ -1,0 +1,28 @@
+{% extends 'base_frontend.html.twig' %}
+
+{% block content %}
+    <div class="col-md-6">
+        <div align="center">
+            <div style="text-align: left">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title" align="center">
+                    <i class="fa fa-star" aria-hidden="true"></i> Acciones</h3>
+            </div>
+            <div class="panel-body">
+                <div class="" align="center">
+                    <input class="btn btn-sm btn-success" type="submit" value="Crear" />
+                    <a href="{{ path('icfosperfil_index') }}"><button type="button" class="btn btn-sm btn-default"> Regresar</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}

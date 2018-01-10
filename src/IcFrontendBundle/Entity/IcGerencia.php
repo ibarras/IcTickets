@@ -98,4 +98,10 @@ class IcGerencia
     {
         return $this->idDireccion;
     }
+
+    public function __toString()
+    {
+        return $this->getNombre();    // TODO: Implement __toString() method.
+    }
+
 }
