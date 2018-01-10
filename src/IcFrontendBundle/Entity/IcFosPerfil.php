@@ -373,8 +373,7 @@ class IcFosPerfil
     public function __toString()
     {
 
-        return $this->nombre . ' '.  $this->apellido ;
-        // TODO: Implement __toString() method.
+        return $this->nombre. '  ' . $this->apellido;
     }
 
 }

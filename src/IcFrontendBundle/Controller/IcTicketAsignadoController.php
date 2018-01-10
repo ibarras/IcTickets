@@ -37,7 +37,6 @@ class IcTicketAsignadoController extends Controller
      *
      * @Route("/", name="icticketasignado_create")
      * @Method("POST")
-     * @Template("IcFrontendBundle::icticketasignado/new.html.twig")
      */
     public function createAction(Request $request)
     {
@@ -72,11 +71,11 @@ class IcTicketAsignadoController extends Controller
 
                 return $this->redirect($this->generateUrl('icticket_index'));
             }
-
-            return array(
-                'entity' => $t,
+            return $this->render('IcFrontendBundle:icticketasignado:new.html.twig', array(
+                'entity' => $entity,
                 'form'   => $form->createView(),
-            );
+            ));
+
 
         }catch(Exception $e){
             $logger = $this->get('logger');

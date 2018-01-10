@@ -16,7 +16,7 @@ class IcConfig
 {
 
     const LIMITE_PAGINADO_GENERAL = 15;
-    const URL_IMAGENES_ACREDITACION = "http://procesos.xolos.com.mx/uploads/imagen/acreditaciones/";
+    const URL_IMAGENES_ACREDITACION = "http://sistemas.xolos.com.mx/uploads/imagen/acreditaciones/";
 
     const LLAVE = "7493462399a99f683e4640102f6878fba02d0bd7d78a975eeb7acb219eda9f11";
 
@@ -26,8 +26,8 @@ class IcConfig
     const ESTATUS_TRABAJANDO = 3;
     const ESTATUS_ESPERA = 4;
     const ESTATUS_FINALIZADO = 5;
-    const URL_IMAGENES_TICKET = "http://127.0.0.1:8000/uploads/imagen/tickets/";
-    const URL_IMAGENES_COMENTARIOS = "http://127.0.0.1:8000/uploads/imagen/comentarios/";
+    const URL_IMAGENES_TICKET = "http://sistemas.xolos.com.mx/uploads/imagen/tickets/";
+    const URL_IMAGENES_COMENTARIOS = "http://sistemas.xolos.com.mx/uploads/imagen/comentarios/";
     const IC_ENVIO_EMAIL = true;
     const MAIL_FROM = "contacto@xolos.com.mx";
 

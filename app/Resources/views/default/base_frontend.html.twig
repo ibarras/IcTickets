@@ -1,0 +1,94 @@
+<!--
+*Creado: Estrada Curiel Zuleyma Jeannette
+*Elaborado: 01 de Septiembre de 2017
+*Modificado:
+*Grupo: Club Tijuana Xoloitzcuintles de Caliente
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1.0, user-scalable=no">
+
+    <title>{% block title %}Club Tijuana Xoloitzcuintles de Caliente{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('l-t.png') }}">
+
+
+
+    <link rel="stylesheet" href="/bundles/icfrontend/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/bundles/icfrontend/css/font-awesome/css/font-awesome.min.css">
+
+    {#<link rel="stylesheet" href="/bundles/icfrontend/css/Style.css">#}
+
+    <!--Estilo de las solicitudes -->
+    <link rel="stylesheet" href="/bundles/icfrontend/css/solicitudStyle.css">
+    <!--Estilo general-->
+    <link rel="stylesheet" href="/bundles/icfrontend/css/app.css">
+    <link rel="stylesheet" href="/bundles/icfrontend/css/lightGallery/lightgallery.css" type="text/css" />
+    </head>
+    <body class="fixed-nav sticky-footer bg-dark" id="page-top">
+    {#{% include'IcFrontendBundle::Default/partials/top_navigation.html.twig' %}#}
+    {% include'IcFrontendBundle::Default/partials/menu.html.twig' %}
+    {#{% include'IcFrontendBundle::Default/partials/aside.html.twig' %}#}
+    <div class="container-fluid">
+        <div class="row">
+
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="alert alert-success" role="alert">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('warning') %}
+                <div class="alert alert-warning" role="alert">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('danger') %}
+                <div  class="alert alert-danger" role="alert">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+        </div>
+        <!-- contenido de la pagina -->
+        <div id="page-content-wrapper">
+            {#<div class="row">#}
+                    {% block content %}
+
+                    {% endblock %}
+            {#</div>#}
+        </div> <!-- /contenido de la pagina -->
+    </div>
+
+
+    {% block javascripts %}
+
+        <script src="/bundles/icfrontend/js/jquery.min.js" type="text/javascript"></script>
+
+        <script src="/bundles/icfrontend/js/popper.min.js" type="text/javascript"></script>
+
+        <script src="/bundles/icfrontend/js/bootstrap.min.js" type="text/javascript"></script>
+
+        <script src="/bundles/icfrontend/js/lightGallery/js/lightgallery-all.min.js" type="text/javascript"></script>
+
+        <script src="/bundles/icfrontend/js/lightGallery/js/jquery.mousewheel.min.js"  type="text/javascript"></script>
+
+        {#<script src='https://unpkg.com/vue'></script>#}
+        {#<script src='https://unpkg.com/axios/dist/axios.min.js'></script>#}
+        {#<script src="{{ asset('bundles/icfrontend/js/finalizar-ticket.js') }}"></script>#}
+        {#<script src="/bundles/icfrontend/js/Style.js" type="text/javascript"></script>#}
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#selector1").lightGallery({
+                    thumbnail:true,
+                    selector: '.item'
+                });
+            });
+        </script>
+    {% endblock %}
+    </body>
+</html>

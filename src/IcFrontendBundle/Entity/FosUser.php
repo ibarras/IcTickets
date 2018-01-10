@@ -379,6 +379,6 @@ class FosUser
     public function __toString()
     {
         // TODO: Implement __toString() method.
-        return $this->username;
+        return  $this->username;
     }
 }

@@ -1,0 +1,18 @@
+
+ic_frontend:
+    resource: "@IcFrontendBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+frontend:
+    resource: "@IcFrontendBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+
+ic_usuario:
+    resource: "@IcUsuarioBundle/Resources/config/routing.yml"
+

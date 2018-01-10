@@ -1,0 +1,15 @@
+# Learn more about services, parameters and containers at
+# https://symfony.com/doc/current/service_container.html
+parameters:
+    #parameter_name: value
+
+services:
+    frontend.form.entity_id:
+        class: IcFrontendBundle\Form\EntityIdType
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: form.type, alias: entity_id }
+    my_form:
+        class: IcFrontendBundle\Form\IcSolicitudGeneralType
+        public: true
+        arguments:  ['@security.token_storage']
